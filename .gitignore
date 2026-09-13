@@ -39,16 +39,19 @@ _notes_runtime/
 # ── Obsidian：跟踪插件本体与配置，只忽略备份与窗口状态 ──────────
 # 插件本体与清单必须跟踪。Obsidian 缺 main.js 会直接加载失败；
 # 而只跟 manifest.json 会留下「有清单没代码」的错位，克隆下来是一堆报错。
-# 这些 blob 本就留在 git 历史里，纳入跟踪不会撑大仓库。
+# （2026-09 复盘：曾经取消跟踪 → 插件全部加载失败，见 commit 08e313d）
 # 插件自动备份（realclaudian 一份约 5 MB，且每次升级都会新生成）→ 忽略
 .obsidian/plugins/*/backup-*/
 # 打开的文件与面板布局，属机器状态
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 
-# ── AI 会话记录（机器状态；claudian-settings.json 配置保留）───
-.claudian/sessions/
-.claudian/opencode/
+# ── Claudian（AI 助手插件）：整体忽略（含设置与会话记录）──────────
+.claudian/
 
 # ── Claude Code ────────────────────────────────────────
 .claude/
+
+# ── 外部参考（第三方 skill 克隆，只作本地查阅）─────────────
+# 上游 Kosthi/11408.skill（MIT）：只作设计参考，是独立 git 仓库，不入本库
+11408.skill/
