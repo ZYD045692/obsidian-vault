@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""真实少提取审计：origin 非标题内容行在拆分稿中缺失的数量（复用 _verify_fingerprint 的 normalize）"""
+"""真实少提取审计：books 非标题内容行在拆分稿中缺失的数量（复用 _verify_fingerprint 的 normalize）"""
 import io, sys, re, os, glob, importlib.util
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
@@ -42,6 +42,6 @@ for book, key in KEYS.items():
                 s_set.add(fp)
     missing = [(ln, raw) for fp, (ln, raw) in o_fp.items()
                if fp not in s_set and not NOISE.search(fp)]
-    print(f"{book}: origin内容行指纹{len(o_fp)} 真·少提取{len(missing)}")
+    print(f"{book}: books内容行指纹{len(o_fp)} 真·少提取{len(missing)}")
     for ln, raw in missing[:10]:
         print(f"   L{ln}: {raw[:80]}")

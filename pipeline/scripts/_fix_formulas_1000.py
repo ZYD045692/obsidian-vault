@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""修复 1000题 新版 origin 的 16 处坏公式（OCR 问题：\\→$、丢括号、中文逗号、\displaylimits、双上标等）"""
+"""修复 1000题 新版 books 的 16 处坏公式（OCR 问题：\\→$、丢括号、中文逗号、\displaylimits、双上标等）"""
 import io, sys, os, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

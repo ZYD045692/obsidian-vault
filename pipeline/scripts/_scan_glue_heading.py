@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # 标题紧贴HTML块扫描：标题行直接跟在HTML行后(无空行)会被CommonMark吞进HTML块,大纲不显示
-# 用法: python _scan_glue_heading.py   (扫8本origin, 有命中即需在该标题前插空行)
+# 用法: python _scan_glue_heading.py   (扫8本books, 有命中即需在该标题前插空行)
 import io, sys, re, glob, os
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

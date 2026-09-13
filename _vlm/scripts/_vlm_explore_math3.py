@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""探查3：30讲答案结构 / 1000题两篇册结构 / PDF内嵌图与origin imgs哈希匹配测试。"""
+"""探查3：30讲答案结构 / 1000题两篇册结构 / PDF内嵌图与books imgs哈希匹配测试。"""
 import os, re, sys, io, hashlib
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 import fitz
@@ -26,7 +26,7 @@ t3 = open("11408/books/27张宇1000题数一【解析册】/27张宇1000题数�
 k = t3.find("#### 1.")
 print("  ", t3[k:k+400].replace("\n", "⏎")[:400])
 
-print("\n## 图片哈希匹配测试（高数 PDF 前5页内嵌图 vs origin imgs）")
+print("\n## 图片哈希匹配测试（高数 PDF 前5页内嵌图 vs books imgs）")
 doc = fitz.open("11408/pdf/27张宇基础30讲（高数）.pdf")
 img_dir = "11408/books/27张宇基础30讲（高数）/imgs"
 md5_map = {}

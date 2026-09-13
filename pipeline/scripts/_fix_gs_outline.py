@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""高数 origin 大纲结构修复：例题去#、补/改节标题、拆标题混行、OCR错字符（一次性，可删）"""
+"""高数 books 大纲结构修复：例题去#、补/改节标题、拆标题混行、OCR错字符（一次性，可删）"""
 import io, sys, re
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 path = "11408/books/27张宇基础30讲（高数）/27张宇基础30讲（高数）.md"

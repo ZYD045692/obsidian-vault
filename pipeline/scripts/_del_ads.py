@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 删除 origin 里的王道书广告页 / 张宇关注公众号广告
+# 删除 books 里的王道书广告页 / 张宇关注公众号广告
 # 形式A: 购买王道书，就上\n\n王道官方考研书店\n\nwangdao.taobao.com
 # 形式B: # 购买王道书，就上 王道官方考研书店\n\nwangdao.taobao.com
 # 单行:  关注公众号获取更多免费咨询

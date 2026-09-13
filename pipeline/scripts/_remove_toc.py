@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""移除 8 本 origin 文件头部的 📑 快速跳转 目录块（到第一个 --- 分隔行）。
+"""移除 8 本 books 文件头部的 📑 快速跳转 目录块（到第一个 --- 分隔行）。
 拆分脚本 find_body 本来就跳过该块，删除对拆分零影响。"""
 import io, sys, re, os
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')

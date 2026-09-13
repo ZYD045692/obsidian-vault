@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""修复 1000题 origin 的公式边界空格（Obsidian MathJax 要求 $ 与内容紧贴）。
+"""修复 1000题 books 的公式边界空格（Obsidian MathJax 要求 $ 与内容紧贴）。
 只删开 $ 后的空格和闭 $ 前的空格；文本分隔空格（x $y$ 的 $ 前）不动。
 块级 $$...$$ 同样处理。
 用法: python _fix_spaces_1000.py

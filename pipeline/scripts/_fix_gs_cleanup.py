@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""高数 origin：删除重复节标题 + 修复缺失空格"""
+"""高数 books：删除重复节标题 + 修复缺失空格"""
 import io, sys, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 

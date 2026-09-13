@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 修复 origin 中的裸 LaTeX（不在 $ 内）：\underline{\text{X}}→**X**，\quad→空格，\cdot→·，裸矩阵包$
+# 修复 books 中的裸 LaTeX（不在 $ 内）：\underline{\text{X}}→**X**，\quad→空格，\cdot→·，裸矩阵包$
 import io, sys, os, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

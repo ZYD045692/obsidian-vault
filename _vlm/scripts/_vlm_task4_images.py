@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """任务4：非A图片带上下文二次判定。
-对任务1判为 B/C/D 的图片，从 origin md 中定位 <img src="imgs/img_NN.jpg"> 的引用位置，
+对任务1判为 B/C/D 的图片，从 books md 中定位 <img src="imgs/img_NN.jpg"> 的引用位置，
 抽取上下文（前后若干行 + 所属小节标题）一并给模型，重新判定 A/B/C/D。
 输出 _vlm/results/task4_images_context/<书>.jsonl（按 img 续跑）。
 用法: python _vlm_task4_images.py [书名号...]（缺省全部8本）"""

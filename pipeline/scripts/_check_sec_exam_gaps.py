@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # 假设每章每节都可能有习题：找出"拆分稿有考点文件但无习题文件"的节，
-# 并回 origin 核实该节是否真的没有习题区。
+# 并回 books 核实该节是否真的没有习题区。
 import io, sys, os, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
@@ -36,7 +36,7 @@ for b, origin in ORIGINS.items():
                 continue
             sec = (int(m.group(1)), int(m.group(2)))
             if sec not in ex_set:
-                # 有考点无习题 → 去 origin 核实该节是否有习题区
+                # 有考点无习题 → 去 books 核实该节是否有习题区
                 has_exam = False
                 oline = open(origin, encoding="utf-8").read().split("\n")
                 in_sec = False
@@ -50,9 +50,9 @@ for b, origin in ORIGINS.items():
                     if in_sec and re.search(r"本节(试题|习题)精选", s):
                         has_exam = True
                         break
-                status = "⚠ origin有习题区但拆分缺!" if has_exam else "origin确认无习题区(正常)"
+                status = "⚠ books有习题区但拆分缺!" if has_exam else "books确认无习题区(正常)"
                 if has_exam:
                     issues += 1
                 print(f"  {ch} 节{sec[0]}.{sec[1]}: {f[:30]} → {status}")
     if issues == 0:
-        print("  （所有无习题文件的节，origin 确认确实没有习题区）")
+        print("  （所有无习题文件的节，books 确认确实没有习题区）")

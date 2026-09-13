@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""8 本 origin 终检：跳级 / div·td 平衡 / ==高亮 / 广告 / 替换符 / 行$奇偶 / 标题=正文泄漏残留"""
+"""8 本 books 终检：跳级 / div·td 平衡 / ==高亮 / 广告 / 替换符 / 行$奇偶 / 标题=正文泄漏残留"""
 import io, sys, re
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 

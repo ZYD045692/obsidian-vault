@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""把 missing14 提取的 14 道题插入 1000题-试题册 origin md（数字位置锚定）。
+"""把 missing14 提取的 14 道题插入 1000题-试题册 books md（数字位置锚定）。
 试题册普通章题号是 `### k.`（三级），测试卷是 `#### k.`（四级）。
 幂等：md 里已有该章该题的跳过。用法: python _repair_apply14.py [--dry-run]"""
 import os, sys, io, json, re

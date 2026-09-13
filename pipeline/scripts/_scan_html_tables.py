@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""扫描 8 本 origin：HTML <table> 块内是否含 $ 数学公式"""
+"""扫描 8 本 books：HTML <table> 块内是否含 $ 数学公式"""
 import io, sys, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 

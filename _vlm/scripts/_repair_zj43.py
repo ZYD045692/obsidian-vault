@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """计组 4.3 综合应用题 题7、题8 整题缺失补齐（复验新发现，备份即缺）。
 从 PDF 提取 Q+A，按 `##### 07`/`##### 08` 插入 4.3.5(Q区二) 与 4.3.6(A区二)。
-输出 _vlm/repair/zj43.jsonl；--apply 时写回 origin。"""
+输出 _vlm/repair/zj43.jsonl；--apply 时写回 books。"""
 import os, sys, io, json, re
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

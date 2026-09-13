@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""线代 origin:例题/课后习题/解答 行转标题(父级+1,封顶H6),题干截短为纯编号。
+"""线代 books:例题/课后习题/解答 行转标题(父级+1,封顶H6),题干截短为纯编号。
 与高数两脚本合并版,一步到位。内容锚定+数量断言。一次性,可删。"""
 import io, sys, re, shutil
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 扫描 origin 中孤立的广告残留 div（无 <img>、无 </div>，后面直接是标题/末尾）
+# 扫描 books 中孤立的广告残留 div（无 <img>、无 </div>，后面直接是标题/末尾）
 import io, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

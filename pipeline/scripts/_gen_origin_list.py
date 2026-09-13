@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# 把 公式待修清单.md 映射到 origin 行号，生成 origin 定位版
+# 把 公式待修清单.md 映射到 books 行号，生成 books 定位版
 # 定位策略：
-#   1. 每个拆分稿文件用"首个非空行"(章节标题)在 origin 中定位 → 得到该文件相对 origin 的行偏移
-#   2. 条目 origin 行号 = 拆分行号 + 偏移，校验内容归一化后包含关系；失败则回退全文搜索
+#   1. 每个拆分稿文件用"首个非空行"(章节标题)在 books 中定位 → 得到该文件相对 books 的行偏移
+#   2. 条目 books 行号 = 拆分行号 + 偏移，校验内容归一化后包含关系；失败则回退全文搜索
 import io, sys, os, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
@@ -29,7 +29,7 @@ for line in open("11408/公式待修清单.md", encoding="utf-8").read().split("
         if m:
             entries.append((book, m.group(1), int(m.group(2)), m.group(3)))
 
-# ---- 预载 origin 行 + 计算每个拆分稿的偏移 ----
+# ---- 预载 books 行 + 计算每个拆分稿的偏移 ----
 odata = {}
 offsets = {}
 for book, root in SPLIT_ROOTS.items():
@@ -78,8 +78,8 @@ def locate(book, sfile, sln, snip):
                 return j + 1, olines[j]
     return None, None
 
-out = ["# 公式缺失/损坏清单（origin 定位版）", "",
-       "> 用法：在 Obsidian 中打开对应 origin 文件，按 **L 行号** 跳转，对照原书补全公式。", ""]
+out = ["# 公式缺失/损坏清单（books 定位版）", "",
+       "> 用法：在 Obsidian 中打开对应 books 文件，按 **L 行号** 跳转，对照原书补全公式。", ""]
 cur = None
 for book, sfile, sln, snip in entries:
     if book != cur:
@@ -88,9 +88,9 @@ for book, sfile, sln, snip in entries:
         cur = book
     olno, oline = locate(book, sfile, sln, snip)
     if olno:
-        out.append(f"- **{sfile} 拆分L{sln}** → origin **L{olno}**：`{oline[:70]}`")
+        out.append(f"- **{sfile} 拆分L{sln}** → books **L{olno}**：`{oline[:70]}`")
     else:
-        out.append(f"- **{sfile} 拆分L{sln}** → ⚠️ 未在 origin 定位：`{snip[:40]}`")
+        out.append(f"- **{sfile} 拆分L{sln}** → ⚠️ 未在 books 定位：`{snip[:40]}`")
 
 out.append("")
 open("11408/公式待修清单-origin定位.md", "w", encoding="utf-8").write("\n".join(out))

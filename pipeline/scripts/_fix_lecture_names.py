@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""修复高数 origin 讲标题：统一为 ## 第N讲 讲名"""
+"""修复高数 books 讲标题：统一为 ## 第N讲 讲名"""
 import io, sys, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""408 四本 origin 标题层级规范化（v2）。"""
+"""408 四本 books 标题层级规范化（v2）。"""
 import io, sys, re, os
 from collections import Counter
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')

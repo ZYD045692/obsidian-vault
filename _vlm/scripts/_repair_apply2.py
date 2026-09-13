@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""应用补提取结果（complete.jsonl）到 origin md。
+"""应用补提取结果（complete.jsonl）到 books md。
 对象：patches.jsonl 中 real 且 fix.type ∈ replace_analysis/fix_analysis/fix_stem、尚未 applied 的项，
 其完整全文由 _repair_complete.py 单题重提取得到。
 安全门槛：looks_complete + 长度不得明显短于原文 + 定位锚定；不过门槛 → manual_review2.md。

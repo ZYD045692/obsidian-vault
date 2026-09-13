@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""检查 8 本 origin div 收支平衡"""
+"""检查 8 本 books div 收支平衡"""
 import io, sys, re, glob, os
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

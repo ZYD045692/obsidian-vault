@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 对比 408 四本：origin 习题区节号 vs 拆分稿习题文件节号
+# 对比 408 四本：books 习题区节号 vs 拆分稿习题文件节号
 # 找出：1) 有习题区但无习题文件 2) 习题文件为空/无题号
 import io, sys, os, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')

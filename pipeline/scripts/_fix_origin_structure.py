@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 修复 408 四本 origin 的破坏性结构异常（精确字符串替换）
+# 修复 408 四本 books 的破坏性结构异常（精确字符串替换）
 import io, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

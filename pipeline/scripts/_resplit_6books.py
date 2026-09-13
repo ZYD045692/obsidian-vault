@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""从 origin 一次性重拆分 6 本书（4本408 + 30讲高数 + 30讲线代）。
+"""从 books 一次性重拆分 6 本书（4本408 + 30讲高数 + 30讲线代）。
 图片引用重写为指向 books/imgs 的相对路径。
 用法: python _resplit_6books.py --dry   # 输出到 _new/ 供对比
       python _resplit_6books.py --apply  # 覆盖拆分稿
@@ -90,7 +90,7 @@ def split_408(book):
             if "习题" in rp: name_map[key]["习题"] = rp
             else: name_map[key]["考点"] = rp
 
-    # 2) 解析 origin 结构
+    # 2) 解析 books 结构
     cur_ch = None; cur_sec = None
     chapters = {}   # ch -> {title_lines, guide:[], secs:[sec_no: {title_line, exam:[], body:[]}]}
     cur = None
@@ -161,7 +161,7 @@ def split_408(book):
             write_to(outdir, k_rp, content)
             n_kao += 1
             if exam_txt.strip():
-                # 题区/答案区：原行透传（origin 已含 ### 本节习题精选 / ### 答案与解析）
+                # 题区/答案区：原行透传（books 已含 ### 本节习题精选 / ### 答案与解析）
                 content = fm_map.get(e_rp, "") + exam_txt + "\n"
                 content = rewrite_img(content, depth_deep)
                 write_to(outdir, e_rp, content)

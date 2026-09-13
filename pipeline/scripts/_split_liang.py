@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""李良概统 origin → 拆分稿（一章一个 md）。
+"""李良概统 books → 拆分稿（一章一个 md）。
 
 拆分稿数学目录：
   split/数学/概统-基础/第N章-章名.md     （源 27李良概统基础）
   split/数学/概统-强化/第N章-章名.md     （源 27李良概统强化）
 frontmatter：type=章, course=数学, book=概统-基础/强化
-图片引用改指 origin（3 级相对路径）。
+图片引用改指 books（3 级相对路径）。
 """
 import glob, io, os, re, sys
 

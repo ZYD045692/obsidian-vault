@@ -12,7 +12,7 @@ CAL = os.path.join(V.VLM, "results", "calibration")
 os.makedirs(CAL, exist_ok=True)
 
 # ---------- 任务1 金标 ----------
-# A: origin 里已人工确认的真实插图; B: 现场渲染的书页(本身就是文字截图)
+# A: books 里已人工确认的真实插图; B: 现场渲染的书页(本身就是文字截图)
 T1_A = [
     "11408/books/27张宇基础30讲（高数）/imgs/img_120.jpg",   # 结构图
     "11408/books/27张宇基础30讲（高数）/imgs/img_847.jpg",   # 曲线图

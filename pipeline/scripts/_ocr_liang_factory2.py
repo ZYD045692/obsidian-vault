@@ -20,7 +20,7 @@ import _crop_liang_pdfs as C            # 复用 PDF/NO_HEADER_PAGES/BASIC_CHS/S
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 STAGE = os.path.join(ROOT, "_vlm", "ocr_stage", "liang_glt_hd")
-# 最终产出：按 基础/强化 两本 origin
+# 最终产出：按 基础/强化 两本 books
 ORIGIN_MAP = {"基础": os.path.join(ROOT, "11408", "books", "27李良概统基础"),
               "强化": os.path.join(ROOT, "11408", "books", "27李良概统强化")}
 # 章全名（基础/强化 章名一致）
@@ -159,7 +159,7 @@ async def ocr_chapter(client, opts, book, ch_name, p_start, p_end, stage):
 
 def assemble_origin(book, ch_name, p_start, p_end, stage):
     """把章内各页 stage md 顺序拼接 → books/27李良概统{基础,强化}/第N章-章名.md；
-    图片复制进 origin 的 imgs/，引用改为相对 origin 文件名。纯拼接不清洗。"""
+    图片复制进 books 的 imgs/，引用改为相对 books 文件名。纯拼接不清洗。"""
     origin_dir = ORIGIN_MAP[book]
     os.makedirs(origin_dir, exist_ok=True)
     os.makedirs(os.path.join(origin_dir, "imgs"), exist_ok=True)
@@ -171,7 +171,7 @@ def assemble_origin(book, ch_name, p_start, p_end, stage):
         if os.path.exists(md):
             parts.append(open(md, encoding="utf-8").read().strip())
     text = "\n\n".join(parts)
-    # 图片：stage imgs/ 里 `p{no}_box_*.jpg` → origin imgs/ 里 `box_*.jpg`（去页码前缀），
+    # 图片：stage imgs/ 里 `p{no}_box_*.jpg` → books imgs/ 里 `box_*.jpg`（去页码前缀），
     # md 里 src 本为 `imgs/img_in_image_box_*.jpg`，与复制后名字一致，无需改引用。
     img_src = os.path.join(stage, book, ch_name, "imgs")
     if os.path.isdir(img_src):

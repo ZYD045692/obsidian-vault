@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""探查数学书 origin 结构与 PDF 书签情况，结果打印到终端。"""
+"""探查数学书 books 结构与 PDF 书签情况，结果打印到终端。"""
 import os, re, sys, io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 import fitz

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""6 本书行指纹精确验证：多提取(拆分稿有origin无) + 少提取(origin有拆分稿无)。"""
+"""6 本书行指纹精确验证：多提取(拆分稿有books无) + 少提取(books有拆分稿无)。"""
 import io, sys, re, os, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
@@ -88,9 +88,9 @@ for book in BOOKS:
         s_fp.extend(body_fps(f))
     s_set = set(s_fp)
 
-    # 多提取：拆分稿有，origin无
+    # 多提取：拆分稿有，books无
     extra = [fp for fp in s_set if fp not in o_fp]
-    # 少提取：origin有，拆分稿无（过滤噪音+标题+短行）
+    # 少提取：books有，拆分稿无（过滤噪音+标题+短行）
     missing = []
     for fp, (ln, raw) in o_fp.items():
         if fp in s_set:
@@ -107,7 +107,7 @@ for book in BOOKS:
             continue
         missing.append((ln, raw, fp))
 
-    print(f"{book}: origin指纹{len(o_fp)} 拆分稿指纹{len(s_set)} | 多提取{len(extra)} 少提取{len(missing)}")
+    print(f"{book}: books指纹{len(o_fp)} 拆分稿指纹{len(s_set)} | 多提取{len(extra)} 少提取{len(missing)}")
     if extra:
         print(f"  多提取前3: {[e[:50] for e in sorted(extra)[:3]]}")
     if missing:

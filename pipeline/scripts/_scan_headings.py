@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 扫描所有 origin 文件标题层级，输出结构与异常
+# 扫描所有 books 文件标题层级，输出结构与异常
 import io, sys, re, os
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

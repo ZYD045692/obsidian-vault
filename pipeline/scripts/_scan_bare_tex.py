@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""扫描 origin 中不在 $ 内的裸 LaTeX 命令（Obsidian 无法渲染）。"""
+"""扫描 books 中不在 $ 内的裸 LaTeX 命令（Obsidian 无法渲染）。"""
 import io, sys, os, re, glob
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """修复队列构建：从 task3q/task3a jsonl 提取去重后的 false 标记项，
-附上 origin md 里该题的当前文本 + 书页范围，写 _vlm/repair/queue.json。
+附上 books md 里该题的当前文本 + 书页范围，写 _vlm/repair/queue.json。
 纯文本不调 API。用法: python _repair_queue.py"""
 import os, sys, io, json
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")

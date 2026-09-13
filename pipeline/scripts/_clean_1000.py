@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""清洗 1000题 新版 origin（直接改 origin，保持可读性）：
+"""清洗 1000题 新版 books（直接改 books，保持可读性）：
 1. 截取正文（删封面/CIP/前言/目录）
 2. 删页眉广告行 + 行内广告
 3. 删假重复标题 / 修错字标题
@@ -96,4 +96,4 @@ for j in JOBS:
         print(f"{j['book']}: 已输出 {tmp} ({len(out.splitlines())} 行)")
     else:
         open(md, "w", encoding="utf-8").write(out)
-        print(f"{j['book']}: 已覆盖 origin ({len(out.splitlines())} 行)")
+        print(f"{j['book']}: 已覆盖 books ({len(out.splitlines())} 行)")
