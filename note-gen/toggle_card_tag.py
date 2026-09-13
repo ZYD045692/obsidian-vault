@@ -22,8 +22,8 @@ def toggle_in_file(path, to_flash=False, dry=False):
     to_flash=False: #flashcards -> #card
     """
     text = open(path, encoding="utf-8").read()
-    old = "#flashcards" if to_flash else "#card"
-    new = "#card" if to_flash else "#flashcards"
+    old = "#card" if to_flash else "#flashcards"
+    new = "#flashcards" if to_flash else "#card"
     # 要求标签独占一行（或前面只有空白），避免误改行内文字
     pat = re.compile(rf"^(\s*){re.escape(old)}(\s*)$", re.M)
     new_text, n = pat.subn(rf"\1{new}\2", text)
