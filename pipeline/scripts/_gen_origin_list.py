@@ -21,7 +21,7 @@ def norm(s):
 # ---- 解析清单 ----
 entries = []  # (book, split_file, line_no, snippet)
 book = None
-for line in open("11408/公式待修清单.md", encoding="utf-8").read().split("\n"):
+for line in open("pipeline/公式待修清单.md", encoding="utf-8").read().split("\n"):
     if line.startswith("## "):
         book = line[3:].strip()
     elif line.startswith("- ") and book:
@@ -93,5 +93,5 @@ for book, sfile, sln, snip in entries:
         out.append(f"- **{sfile} 拆分L{sln}** → ⚠️ 未在 books 定位：`{snip[:40]}`")
 
 out.append("")
-open("11408/公式待修清单-origin定位.md", "w", encoding="utf-8").write("\n".join(out))
+open("pipeline/公式待修清单-origin定位.md", "w", encoding="utf-8").write("\n".join(out))
 print("\n".join(out))

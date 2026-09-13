@@ -39,7 +39,7 @@ for label, root in [("30讲-高数", "11408/split/数学/30讲-高数"), ("30讲
                 n += 1
     out.append(f"\n共 {n} 处\n")
 
-open("11408/公式待修清单.md", "w", encoding="utf-8").write("\n".join(out))
+open("pipeline/公式待修清单.md", "w", encoding="utf-8").write("\n".join(out))
 os.remove("_chk2.js")
-print("已生成 11408/公式待修清单.md")
+print("已生成 pipeline/公式待修清单.md")
 print("\n".join(out[:20]))
