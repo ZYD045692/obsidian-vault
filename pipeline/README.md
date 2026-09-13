@@ -10,28 +10,19 @@
 ## 目录结构（固定）
 
 ```
-vault 根/
-├── pipeline/        ← 本流程规范（README.md）+ guides/ 专项排查文档 + scripts/ 处理脚本
-├── cropped-pdf/     ← 中间产物：扫描 PDF 去页眉页脚后的分章 PDF（从 11408/pdf/ 可再生，见第 0 步）
-├── _vlm/            ← VLM 审计流水线；本流程的 OCR 中间产物落 _vlm/ocr_stage/
-└── 11408/           ← 内容层
-    ├── books/           ← 一手源（已清洗、已修复，唯一事实来源）
-    │   ├── 2027数据结构/           （.md + imgs/）
-    │   ├── 2027操作系统/
-    │   ├── 2027计算机组成原理/
-    │   ├── 2027计算机网络/
-    │   ├── 27张宇基础30讲（高数）/
-    │   ├── 27张宇基础30讲线代/
-    │   ├── 27张宇1000题数一【试题册】/
-    │   └── 27张宇1000题数一【解析册】/
-    ├── split/           ← 从 books 一次性拆分的成品（可读原文分章）
-    │   ├── 数据结构/     （NN-章名/ 导读.md + 考点/x.y-节名.md + 习题/x.y-本节习题与解析.md）
-    │   ├── 操作系统/ 计算机组成原理/ 计算机网络/   （同上）
-    │   ├── 数学/30讲-高数/  30讲-线代/             （第N讲-讲名.md）
-    │   ├── 数学/1000题-试题册/  1000题-解析册/      （分篇 → 分科，见下方规则）
-    │   ├── 408-MOC.md  数学-MOC.md
-    └── notes/           ← 现代笔记层（考点总结+闪卡+错题）。骨架由 note-gen/scripts/_build_kg_skeleton.py 生成，已存在文件跳过不覆盖
+pipeline/
+├── README.md        ← 本文件：流程规范
+├── guides/          ← 专项排查文档（见下方「处理专题索引」）
+└── scripts/         ← 处理脚本（_*.py / _*.cjs，清单与命令见 `scripts/README.md` ）
 ```
+
+本流程的读写范围（各目录细节看各自的 README）：
+
+- **输入**：`11408/pdf/`（扫描原书，不入 git）
+- **产物**：`11408/books/`（清洗后的文本底本，唯一事实来源）、`11408/split/`（拆分稿）
+- **中间产物**：`cropped-pdf/`（去页眉页脚的分章 PDF，可从 `11408/pdf/` 再生）、`_vlm/ocr_stage/`（OCR 中间产物）
+- 内容层结构与定位规则：`11408/11408.md`（每个知识库的入口文件 = `<知识库名>.md`）
+- **质量审计（本流程下游）**：VLM 多模态审计（插图鉴定 / 题目答案完整性 / 小节对照）见 `_vlm/PLAN.md`，结论人工裁定后回改 `books/`——属于产线的收尾环节，不是独立于产线的事。
 
 ## 处理流水线（7 步，每本书都必须走完）
 
@@ -134,7 +125,7 @@ vault 根/
 ### 第 6 步：报告与收尾
 
 - 报告：缺失章节清单、校验结果表、改动摘要
-- 清理：临时脚本/临时目录删除；**保留**：拆分脚本（`_resplit_6books.py` 等）、校验脚本（`_verify_integrity.py`、`_verify_fingerprint.py`）、本流程文档
+- 清理：临时脚本与临时目录删除（临时文件放仓库根 `tmp/` ，用完即删）；**保留**：拆分脚本（`_resplit_6books.py` 等）、校验脚本（`_verify_integrity.py`、`_verify_fingerprint.py`）、本流程文档
 
 ## 处理专题索引
 
@@ -172,79 +163,17 @@ python pipeline/scripts/_del_orphan_div.py     # 删孤儿 <div style="text-alig
 
 注意：`cskaoyan.com`、代码输出里的「王道」（如 DNS 域名、printf("王道")）是**正常正文**，不能当广告删。
 
-## 保留的工具脚本（`pipeline/scripts/`，勿删）
+## 工具脚本与命令速查
 
-| 脚本 | 用途 |
-|---|---|
-| `_resplit_6books.py` | 408 四科 + 数学 30讲从 books 一次性拆分，图片指向 books |
-| `_crop_liang_pdfs.py` | 扫描 PDF 预裁剪**参考实现**（写在李良概统上）：页眉按需裁（如 7.5%，章首页不裁）+ tesseract 逐页精确裁页码，按 基础/强化→章节 分章合成 PDF。**新增扫描书时参考此方法另写/复制修改**（PDF 路径、章边界、无页眉页清单为该书专属） |
-| `_calc_pageno_pos.py` | 页码精确定位验证：tesseract 逐页读页码，输出页码 top 位置分布（初裁前跑，确认页码带/章边界） |
-| `_verify_integrity.py` | 字数完整度 + 图片引用匹配校验 |
-| `_verify_fingerprint.py` | 行指纹多提取/少提取校验 |
-| `_validate_dir.cjs` / `validate_single.js` | MathJax 公式渲染校验 |
-| `_scan_origin_structure.py` | books 各书结构扫描（章/节/习题区标题异常） |
-| `_fix_origin_structure.py` | 修复结构异常（章/节/习题区/子节标题） |
-| `_del_ads.py` / `_del_orphan_div.py` | 删广告块 / 删孤儿 `<div>` 残留 |
-| `_check_chapter_exams.py` / `_check_exam_gaps.py` / `_check_sec_exam_gaps.py` | 习题完整性检查（每章有习题 / 习题区对比 / 无习题节回 books 核实） |
-| `_validate_blocks.cjs` | 跨行 `$$` 块 KaTeX 校验（**补 `_validate_dir.cjs` 盲区**） |
-| `_validate_all.cjs` | **全文 KaTeX 校验**（状态机提取所有公式含跨行行内，终极权威，校验阶段必跑） |
-| `_show_inline_bb.py` / `_scan_crossblock.py` | 定位行内嵌 `$$` / 跨行 `$...$` 块 |
-| `_scan_dollar_balance2.py` | 公式边界解析（跳过 `\$` 转义、块内 `$` 不算边界）→ 应"边界完整" |
-| `_scan_glue_heading.py` | 标题紧贴 HTML 行（无空行）扫描 → 命中即在标题前插空行，否则大纲吞标题 |
-| `_check_ti_continuity.py` | 30讲数学 例/题/答编号连续性+题答对称交叉验证（题目进大纲后必跑） |
-| `_add_ti_headings_408.py` | 408×4 课后习题题目化（题/答 `NN.` → `##### NN`，顺序期望+重同步，幂等） |
-| `_check_ti_continuity_408.py` | 408×4 习题编号连续性+题答对称交叉验证（题目化后必跑） |
-| `_fix_ti_sjjg_round2.py` / `_fix_ti_os_round2.py` / `_fix_ti_jz_round2.py` / `_fix_ti_jw_round2.py` | 408 断档收尾修复（13/9/12/3 处，内容锚定+断言，已应用，可删） |
-| `_scan_dollar_lines.py` | 逐行单 `$` 配对检查（跳过代码块/`$$`/`\$`） |
-| `_scan_dollar_unmatched.py` | 定位孤立 `$`/`$$`（承受点） |
-| `_scan_unknown_cmds.py` | 未知 LaTeX 命令（OCR 截断）扫描 |
-| `_fix_options.py` | 选择题选项乱码修复（`\qua　`/`(D　`/`nfty`/`rac{`/补 `(C)`） |
-| `_norm_408_headings.py` / `_norm_408_pass2.py` | 408 标题层级统一 + 上下文防跳级 |
-| `_norm_math_headings.py` / `_norm_math_pass2.py` | 30讲数学标题层级统一 |
-| `_norm_1000_headings.py` | 1000题标题层级统一 |
-| `_remove_toc.py` | 移除 books 头部 `📑 快速跳转` 目录块（已弃用该功能） |
-| `_fix_unclosed_div.py` / `_check_div_balance.py` | 修复未闭合 `<div>`（img 补闭合/孤儿删除）/ 收支校验 |
-| `_fix_eq_pairs.py` | 成对 `==` 假高亮修复（C 表达式包反引号） |
-| `_fix_final.py` | 句中广告残留 + 跨行公式边界空格 + `\xrightarrow` 乱码修复 |
-| `_final_scan.py` / `_scan_bounds.py` / `_scan_artifacts.py` / `_scan_div.py` / `_scan_unclosed_divs.py` | 内容终检扫描（广告/边界空格/反斜杠/重复行/div 分类） |
-| `_scan_headings.py` / `_dump_headings.py` / `_categorize_408.py` | 标题扫描/导出/分类诊断 |
-| `pipeline/README.md` | 本流程规范 |
+脚本清单、一次性工具警告、常用命令速查统一放在 `scripts/README.md` 。
 
-## 常用命令速查
+## 现状清单
 
-```bash
-# —— 第 0 步：OCR 前 PDF 预裁剪（去页眉页脚，扫描版新书必做）——
-python pipeline/scripts/_calc_pageno_pos.py 10 127        # 页码定位验证（基础篇 10~127）
-python pipeline/scripts/_crop_liang_pdfs.py --all          # 全书裁剪+分章合成（基础/强化→第N章.pdf）
-python pipeline/scripts/_crop_liang_pdfs.py --all --book 基础   # 只跑基础篇
-python pipeline/scripts/_scan_headings.py              # 标题层级跳级检查（应全部"(无)"，必跑）
-python pipeline/scripts/_norm_408_headings.py && python pipeline/scripts/_norm_408_pass2.py   # 408 标题层级统一
-python pipeline/scripts/_norm_math_headings.py && python pipeline/scripts/_norm_math_pass2.py # 30讲数学标题层级统一
-python pipeline/scripts/_norm_1000_headings.py         # 1000题标题层级统一
-python pipeline/scripts/_resplit_6books.py --dry    # 生成到 _new_split/ 对比
-python pipeline/scripts/_resplit_6books.py --apply  # 正式覆盖拆分稿
-python pipeline/scripts/_verify_integrity.py        # 字数+图片校验
-python pipeline/scripts/_verify_fingerprint.py      # 指纹校验
-node pipeline/scripts/_validate_dir.cjs             # 公式校验
-python pipeline/scripts/_scan_origin_structure.py   # books 结构扫描（拆分前必跑）
-python pipeline/scripts/_check_chapter_exams.py     # 每章习题文件检查
-python pipeline/scripts/_check_exam_gaps.py         # 习题区 vs 习题文件对比
-node pipeline/scripts/_validate_blocks.cjs <md>     # 跨行 $$ 块 KaTeX 校验（补盲区，必跑）
-python pipeline/scripts/_scan_dollar_balance2.py    # 公式边界解析 → 应"边界完整"
-```
+各本书处理到哪里、校验结果如何：见 `现状清单.md` 。
 
-## 现状清单（2026-08-16）
+## 相关文档
 
-| 书 | books | 拆分稿 | 校验 | 备注 |
-|---|---|---|---|---|
-| 数据结构 | ✅ | ✅ | 100% | 图 589；标题层级已统一(2026-08-17)：节=H2、小节=H3、答案行/注意等去#，零跳级；2026-08-18 课后习题题目化：题798+答799进大纲，修13处断档（粘连/全角点/丢点/div/乱序/PDF补答），删1处重复截断行 → 编号全连续、题答对称 |
-| 操作系统 | ✅ | ✅ | 100% | 图 160；标题紧贴HTML块插空行×2；标题层级已统一：节=H2、小节=H3、考点追踪=H3，答案行629处去#；2026-08-18 课后习题题目化：题755+答755进大纲，修9处断档（R→B×2、II.→11.、4.2答案13-16区重建等），删1处重复截断行 → 编号全连续、题答对称 |
-| 计算机组成原理 | ✅ | ✅ | 100% | 图 151；标题层级已统一：节=H2、小节=H3，答案行568处去#，删`## 数据的表示和运算`残留；2026-08-18 课后习题题目化：题673+答680进大纲，修12项断档（孤儿```c围栏×4、丢题干/答案行PDF补、错号10→16、原书错印答07→09等）→ 编号全连续（4.3二缺7/8为原书编号）、题答对称；遗留~30处孤儿```c围栏裹解析行待清理 |
-| 计算机网络 | ✅ | ✅ | 100% | 图 211；标题紧贴HTML块插空行×2；标题层级已统一：节=H2、小节=H3，答案行521处去#，删5个章名重复残留；2026-08-18 课后习题题目化：题643+答640进大纲，修3处断档（粘连/丢点/PDF补11.C）→ 编号全连续、题答对称 |
-| 30讲-高数 | ✅ | ✅ | 100% | 图 767；标题层级已统一：讲=H2、三件套=H3、内容节=H4，删6个页眉残留，全文公式FAIL=0；2026-08-17 第三轮：删62行跨页重复标题、重建第5讲节结构（一/二/三/四/六）、补第13讲「一 基本概念」/第14讲「1 概念」/第16讲「六 傅里叶级数+2 求法+1 周期为2l」、例题去#×4、删孤儿围栏×1、修数学块闭合$$尾随文字×1（曾致大纲16/17/18讲消失）、重建第1讲节结构（一1~5/二1~2/三1~9/四1~2/五1~2）、例题/定理缺空格`#####例`去#×7、标题紧贴HTML块插空行×2（三/1物理应用）、OCR狹狗→狗；第四轮：例/习题/解答转纯编号标题进大纲（例344+题185+答183=712处，父级+1，题干留正文），修OCR粘连`13.60.4`→`13.6 0.4`；第五轮（编号连续性交叉验证）：补漏转6（☆/☐☑/★ ★/$$包裹）、拆粘连题号4（2.31/2.51/2.61/6.10）、解$$裹解答2（1.6/3.6）、删跨页幻影2（例8.17/例16.35）、误转并回1（例1.20的两个结论）、补丢标题4（例2.16/答4.4/例14.1/例13.17按PDF补题干）→ 18讲例/题/答编号全连续 |
-| 30讲-线代 | ✅ | ✅ | 100% | 图 135；标题层级已统一：讲=H2、三件套=H3、内容节=H4，删9个页眉残留；2026-08-17 第二轮：例/习题/解答转纯编号标题进大纲（例92+题75+答74=241处，父级+1封顶H6，题干留正文，`_add_ti_headings_xd.py` 一步到位）；第三轮（编号连续性交叉验证，`_fix_ti_xd_round2.py`）：题1.5层级错（`#### 1.5 行列式`→`##### 1.5`+正文）、拆粘连答号2（1.70→1.7+答案0、5.84→5.8+答案4）、拆数学块包裹答2（1.10 `$`整行、2.10 `aligned`块）、补丢标题1（例6.2，内容经PDF p192-193核对完好）→ 第1~6讲例/题/答编号全连续、题答对称，全文公式FAIL=0(5130)；第四轮：全部7讲讲名并入`##`标题（`## 第N讲 讲名`，删裸名行，对齐高数格式），第0讲按书（PDF p8-9）补节号`### 一 对象（元素）：向量`/`### 二 运算`，3个练习框转`##### 练习：…`进大纲（父节H4+1；书中第0讲无例0.x编号题，练习即其例题，经PDF p8-17核实） |
-| 1000题-试题册 | ✅（已清洗：广告/乱码/假标题清零，按目录补8个章标题） | ✅ 分篇分科结构 | 100% + 公式FAIL=0(6487) | 图 30；标题层级已统一：章=H2、测试卷=H2、题型=H3 |
-| 1000题-解析册 | ✅（2026-08-17 修复16个行内嵌`$$`根源，797个块吞正文→0） | ✅ 分篇分科结构 | 100% + 全文公式FAIL=0(13540) | 图 132；标题层级已统一：章=H2，答案/解析行480处去# |
-| 27李良概统基础 | ✅（2026-08-31 新书入库：高清300dpi裁剪去页眉页脚 → PaddleOCR-VL-1.6 逐章OCR → 清洗） | ✅ 概统-基础（7章，一章一md） | 100% + 公式FAIL=0 | 图 16；正文边界 p10-127（章首页不裁页眉/页码逐页tesseract定位）；清洗：删页眉残图7、标题层级规范、条目编号统一半角、公式边界空格清零、例题题目化（`【例】`→`#### 例`，基础篇无编号） |
-| 27李良概统强化 | ✅（同上，p129-247） | ✅ 概统-强化（7章，一章一md） | 100% + 公式FAIL=0 | 图 9；含官网导出3章补齐；`<基础知识回顾>/<精选例题>`标签转H3标题；例题题目化（`【例N.M】`→`#### 例N.M`，编号连续性验证：仅第三章缺3.8为原书跳号，其余章连续） |
-
+- 处理专题（11 篇专项排查）：`guides/`
+- 脚本清单 / 常用命令速查：`scripts/README.md`
+- 各书处理状态台账：`现状清单.md`
+- VLM 质量审计（本流程下游）：`../_vlm/PLAN.md`
