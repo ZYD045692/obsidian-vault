@@ -1,30 +1,54 @@
-# PDF files（扫描原书，大文件不入库）
+# ══════════════════════════════════════════════════════════════
+# 跟踪原则：只保留「人写的、不可廉价重建的」内容与代码。
+#   ① 内容产物  11408/{books,split,notes}            → 跟踪
+#   ② 代码与规范 pipeline/ note-gen/ _vlm/scripts/   → 跟踪
+#   ③ 跑脚本可再生的中间产物                          → 忽略
+#   ④ 机器状态 / 密钥 / 备份                          → 忽略
+# 注意：gitignore 不支持行尾注释，所有说明只能单独成行。
+# ══════════════════════════════════════════════════════════════
+
+# ── 扫描原书与可再生的大文件 ───────────────────────────────
+# 全部 PDF：扫描原书 + 第 0 步裁剪产物，都可由原书再生
 *.pdf
-
-# 源 PDF 目录 + 裁剪产物（都从扫描原书可再生）
+# 扫描原书（大文件，不入库）
 11408/pdf/
-11408/裁剪pdf/
+# 第 0 步 PDF 预裁剪产物（跑 pipeline/scripts/_crop_liang_pdfs.py 可再生）
+cropped-pdf/
+# 页面渲染与脚本调试残留
+tmp/
 
-# Python
+# ── Python ─────────────────────────────────────────────
 __pycache__/
 
-# 敏感信息（API key，永不入库）
+# ── 密钥（永不入库）─────────────────────────────────────
 _vlm/.env
 
-# VLM 审计运行时产物（PLAN.md / scripts/ / config.json 等代码与文档保留跟踪）
-# 页面截图，量大
-_vlm/pages/
-_vlm/logs/
-# 批量脚本自动备份
-_vlm/md_backup/
-_vlm/repair/
-# 模型观察记录，随审计轮次增长；README 保留
-_vlm/results/*
-!_vlm/results/README.md
-_vlm/*.log
+# ── _vlm：默认全忽略，只白名单保留「代码 + 规范」─────────────
+# 一次性解决新阶段目录被默认跟踪的问题：以后新增 ocr_stage2/ 之类会自动忽略。
+# 被忽略项包括 pages/（页面截图）、ocr_stage/（逐页 OCR 中间产物）、
+# logs/、md_backup/（批量脚本备份）、repair/、results/（观察表与 JSONL 账本
+# 只留本地不上传，其说明书同样是本地文档）以及各类 *.log
+_vlm/*
+!_vlm/PLAN.md
+!_vlm/config.json
+!_vlm/scripts/
 
-# 笔记生成运行时产物（raw 留档 / 失败清单 / 日志均为本地运行时产物，不入库）
+# ── 笔记生成运行时产物（raw 留档 / 失败清单 / 日志）───────────
 _notes_runtime/
 
-# 处理流程脚本的页面渲染残留（可由扫描原书再生）
-tmp/_pdf_page_*.png
+# ── Obsidian：保留配置与数据，去掉插件本体 / 自动备份 / 窗口状态 ──
+# 插件代码与样式可重装（data.json 等配置与 SR 复习数据保留）
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+# 插件自动备份
+.obsidian/plugins/*/backup-*/
+# 打开的文件与面板布局，属机器状态
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# ── AI 会话记录（机器状态；claudian-settings.json 配置保留）───
+.claudian/sessions/
+.claudian/opencode/
+
+# ── Claude Code ────────────────────────────────────────
+.claude/
