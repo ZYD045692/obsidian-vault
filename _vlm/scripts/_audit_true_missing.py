@@ -22,7 +22,7 @@ def split_fm(content):
 
 KEYS = {"30讲-高数": "27张宇基础30讲（高数）", "30讲-线代": "27张宇基础30讲线代"}
 for book, key in KEYS.items():
-    ofile = glob.glob(os.path.join("11408/origin", f"*{key}*", "*.md"))[0]
+    ofile = glob.glob(os.path.join("11408/books", f"*{key}*", "*.md"))[0]
     o_fp = {}
     for i, l in enumerate(open(ofile, encoding="utf-8").read().split("\n"), 1):
         s = l.strip()
@@ -32,7 +32,7 @@ for book, key in KEYS.items():
         if fp and len(fp) >= 3 and fp not in o_fp:
             o_fp[fp] = (i, s)
     s_set = set()
-    for f in glob.glob(os.path.join("11408/拆分稿/数学", book, "*.md")):
+    for f in glob.glob(os.path.join("11408/split/数学", book, "*.md")):
         for l in split_fm(open(f, encoding="utf-8").read()).split("\n"):
             s = l.strip()
             if not s or s.startswith("#") or s.startswith("---"):

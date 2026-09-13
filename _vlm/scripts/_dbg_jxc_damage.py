@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 BS = chr(92)
 
-f = glob.glob("11408/origin/*解析册*/*.md")[0]
+f = glob.glob("11408/books/*解析册*/*.md")[0]
 lines = open(f, encoding="utf-8").read().split("\n")
 
 # ---- 1. 行首腐蚀碎片统计（先只报告）----

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""应用补丁到 origin/*.md（内容锚定+断言+幂等+完整度门槛）。
+"""应用补丁到 books/*.md（内容锚定+断言+幂等+完整度门槛）。
 安全级：
   L1 直接应用：insert_options（块尾补选项）/ insert_problem（新块插入）/ set_letter（补答案字母）
   L2 完整度门槛后应用：replace_analysis/fix_analysis/fix_stem——内容须"收尾干净"且比原文长

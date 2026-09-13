@@ -3,7 +3,7 @@
 import os, sys, glob, re, collections
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 BS = chr(92)
-for f in sorted(glob.glob("11408/origin/*/*.md")):
+for f in sorted(glob.glob("11408/books/*/*.md")):
     t = open(f, encoding="utf-8").read()
     lines = t.split("\n")
     issues = []

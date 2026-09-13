@@ -6,14 +6,14 @@ from concurrent.futures import ThreadPoolExecutor
 import _vlm_lib as V
 
 IMG_BOOKS = {
-    "数据结构": "11408/origin/2027数据结构/imgs",
-    "操作系统": "11408/origin/2027操作系统/imgs",
-    "计算机组成原理": "11408/origin/2027计算机组成原理/imgs",
-    "计算机网络": "11408/origin/2027计算机网络/imgs",
-    "30讲-高数": "11408/origin/27张宇基础30讲（高数）/imgs",
-    "30讲-线代": "11408/origin/27张宇基础30讲线代/imgs",
-    "1000题-试题册": "11408/origin/27张宇1000题数一【试题册】/imgs",
-    "1000题-解析册": "11408/origin/27张宇1000题数一【解析册】/imgs",
+    "数据结构": "11408/books/2027数据结构/imgs",
+    "操作系统": "11408/books/2027操作系统/imgs",
+    "计算机组成原理": "11408/books/2027计算机组成原理/imgs",
+    "计算机网络": "11408/books/2027计算机网络/imgs",
+    "30讲-高数": "11408/books/27张宇基础30讲（高数）/imgs",
+    "30讲-线代": "11408/books/27张宇基础30讲线代/imgs",
+    "1000题-试题册": "11408/books/27张宇1000题数一【试题册】/imgs",
+    "1000题-解析册": "11408/books/27张宇1000题数一【解析册】/imgs",
 }
 IMG_BOOKS = {k: os.path.join(V.ROOT, v) for k, v in IMG_BOOKS.items()}
 

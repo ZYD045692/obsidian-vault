@@ -19,7 +19,7 @@ for lvl, title, pg in doc.get_toc():
 doc.close()
 
 print("\n## 高数 md 页码/锚点标记检查")
-text = open("11408/origin/27张宇基础30讲（高数）/27张宇基础30讲（高数）.md", encoding="utf-8").read()
+text = open("11408/books/27张宇基础30讲（高数）/27张宇基础30讲（高数）.md", encoding="utf-8").read()
 for pat in [r"<!--.*?-->", r"\[页\s*\d+\]", r"第\s*\d+\s*页", r"p\d{1,3}\b"]:
     m = re.findall(pat, text)
     print(f"  {pat}: {len(m)} {m[:5]}")

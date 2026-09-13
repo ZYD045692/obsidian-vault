@@ -7,8 +7,8 @@ import _vlm_lib as V
 from _vlm_task1_images import PROMPT
 
 CASES = [
-    ("高数 img_847（应为B/整页书页或文字段落）", "11408/origin/27张宇基础30讲（高数）/imgs/img_847.jpg"),
-    ("高数 img_120（应为A 真实插图/结构图）", "11408/origin/27张宇基础30讲（高数）/imgs/img_120.jpg"),
+    ("高数 img_847（应为B/整页书页或文字段落）", "11408/books/27张宇基础30讲（高数）/imgs/img_847.jpg"),
+    ("高数 img_120（应为A 真实插图/结构图）", "11408/books/27张宇基础30讲（高数）/imgs/img_120.jpg"),
 ]
 
 for label, path in CASES:

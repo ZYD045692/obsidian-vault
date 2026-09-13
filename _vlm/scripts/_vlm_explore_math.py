@@ -7,15 +7,15 @@ import fitz
 print("## 11408/pdf")
 for f in sorted(os.listdir("11408/pdf")):
     print("  ", f)
-print("## 11408/origin")
-for f in sorted(os.listdir("11408/origin")):
+print("## 11408/books")
+for f in sorted(os.listdir("11408/books")):
     print("  ", f)
 
 MATH = {
-    "30讲-高数": "11408/origin/27张宇基础30讲（高数）",
-    "30讲-线代": "11408/origin/27张宇基础30讲线代",
-    "1000题-试题册": "11408/origin/27张宇1000题数一【试题册】",
-    "1000题-解析册": "11408/origin/27张宇1000题数一【解析册】",
+    "30讲-高数": "11408/books/27张宇基础30讲（高数）",
+    "30讲-线代": "11408/books/27张宇基础30讲线代",
+    "1000题-试题册": "11408/books/27张宇1000题数一【试题册】",
+    "1000题-解析册": "11408/books/27张宇1000题数一【解析册】",
 }
 for book, d in MATH.items():
     mds = [f for f in os.listdir(d) if f.endswith(".md")]

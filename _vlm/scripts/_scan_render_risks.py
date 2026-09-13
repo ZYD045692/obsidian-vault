@@ -7,7 +7,7 @@
 """
 import glob, os, re
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
-for f in sorted(glob.glob("11408/origin/*/*.md")):
+for f in sorted(glob.glob("11408/books/*/*.md")):
     lines = open(f, encoding="utf-8").read().split("\n")
     odd_dollar = []
     for i, l in enumerate(lines, 1):

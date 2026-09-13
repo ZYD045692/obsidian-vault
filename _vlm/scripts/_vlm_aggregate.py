@@ -39,7 +39,7 @@ def agg_task1():
         if ev:
             samples.append((book, random.choice(ev)))
     lines.append(f"| **合计** | **{total_imgs}** | **{total_done}** | | | | | | | |")
-    lines += ["", "### 抽查样本（B/D 类，人工对照 origin/imgs 原图）"] + [
+    lines += ["", "### 抽查样本（B/D 类，人工对照 books/imgs 原图）"] + [
         f"- {b} `{s['img']}`: {s.get('desc','')[:60]} → {s.get('cat')}/{s.get('sub')}" for b, s in samples]
     return lines, total_imgs == total_done
 

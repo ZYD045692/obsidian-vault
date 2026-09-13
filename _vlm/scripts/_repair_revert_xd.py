@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 from _repair_apply import find_block_30jiang
 
-BOOK_MD = "11408/origin/27张宇基础30讲线代/27张宇基础30讲线代.md"
+BOOK_MD = "11408/books/27张宇基础30讲线代/27张宇基础30讲线代.md"
 BAK = "_vlm/md_backup/30讲-线代.md"
 REVERT = {"1.5": 1, "1.7": 1, "1.8": 1}   # num -> 讲
 

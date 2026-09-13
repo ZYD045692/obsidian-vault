@@ -5,7 +5,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="repla
 import fitz
 
 print("## 高数 习题节后半段（找答案标题）")
-text = open("11408/origin/27张宇基础30讲（高数）/27张宇基础30讲（高数）.md", encoding="utf-8").read()
+text = open("11408/books/27张宇基础30讲（高数）/27张宇基础30讲（高数）.md", encoding="utf-8").read()
 i = text.find("基础习题精练")
 seg = text[i:i+20000]
 j = seg.find("#### ", 10)
@@ -13,7 +13,7 @@ heads = re.findall(r"(?m)^(####?) +(.{0,30})", seg)
 print("  节内####/###标题:", heads[:15])
 
 print("\n## 1000题-试题册 结构（前3章标题树 + ####出现位置）")
-t2 = open("11408/origin/27张宇1000题数一【试题册】/27张宇1000题数一【试题册】.md", encoding="utf-8").read()
+t2 = open("11408/books/27张宇1000题数一【试题册】/27张宇1000题数一【试题册】.md", encoding="utf-8").read()
 lines = t2.split("\n")
 tree = [(l[:50]) for l in lines if re.match(r"^#{1,4} ", l)][:25]
 for l in tree: print("  ", l)
@@ -22,13 +22,13 @@ k = t2.find("### 1.")
 print("  样本:", t2[k:k+400].replace("\n", "⏎")[:400])
 
 print("\n## 1000题-解析册 样本")
-t3 = open("11408/origin/27张宇1000题数一【解析册】/27张宇1000题数一【解析册】.md", encoding="utf-8").read()
+t3 = open("11408/books/27张宇1000题数一【解析册】/27张宇1000题数一【解析册】.md", encoding="utf-8").read()
 k = t3.find("#### 1.")
 print("  ", t3[k:k+400].replace("\n", "⏎")[:400])
 
 print("\n## 图片哈希匹配测试（高数 PDF 前5页内嵌图 vs origin imgs）")
 doc = fitz.open("11408/pdf/27张宇基础30讲（高数）.pdf")
-img_dir = "11408/origin/27张宇基础30讲（高数）/imgs"
+img_dir = "11408/books/27张宇基础30讲（高数）/imgs"
 md5_map = {}
 for f in os.listdir(img_dir):
     md5_map[hashlib.md5(open(os.path.join(img_dir, f), "rb").read()).hexdigest()] = f

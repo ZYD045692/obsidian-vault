@@ -14,10 +14,10 @@ os.makedirs(CAL, exist_ok=True)
 # ---------- 任务1 金标 ----------
 # A: origin 里已人工确认的真实插图; B: 现场渲染的书页(本身就是文字截图)
 T1_A = [
-    "11408/origin/27张宇基础30讲（高数）/imgs/img_120.jpg",   # 结构图
-    "11408/origin/27张宇基础30讲（高数）/imgs/img_847.jpg",   # 曲线图
-    "11408/origin/2027计算机组成原理/imgs/img_55.jpg",        # Cache结构图
-    "11408/origin/2027数据结构/imgs/img_100.jpg",             # 链表图
+    "11408/books/27张宇基础30讲（高数）/imgs/img_120.jpg",   # 结构图
+    "11408/books/27张宇基础30讲（高数）/imgs/img_847.jpg",   # 曲线图
+    "11408/books/2027计算机组成原理/imgs/img_55.jpg",        # Cache结构图
+    "11408/books/2027数据结构/imgs/img_100.jpg",             # 链表图
 ]
 T1_B_SRC = [  # (pdf, 0-based页) 渲染出来当"文字截图"样本
     ("11408/pdf/2027数据结构_高清带书签版.pdf", 59),

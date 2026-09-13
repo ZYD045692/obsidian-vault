@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "path:11408/笔记/数学  ",
+  "search": "path:11408/notes/数学  ",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -8,42 +8,42 @@
   "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "path:\"11408/笔记/408/数据结构\"",
+      "query": "path:\"11408/notes/408/数据结构\"",
       "color": {
         "a": 1,
         "rgb": 4886745
       }
     },
     {
-      "query": "path:\"11408/笔记/408/操作系统\"",
+      "query": "path:\"11408/notes/408/操作系统\"",
       "color": {
         "a": 1,
         "rgb": 5284175
       }
     },
     {
-      "query": "path:\"11408/笔记/408/计算机组成原理\"",
+      "query": "path:\"11408/notes/408/计算机组成原理\"",
       "color": {
         "a": 1,
         "rgb": 12682241
       }
     },
     {
-      "query": "path:\"11408/笔记/408/计算机网络\"",
+      "query": "path:\"11408/notes/408/计算机网络\"",
       "color": {
         "a": 1,
         "rgb": 10309341
       }
     },
     {
-      "query": "path:\"11408/笔记/数学/高数\"",
+      "query": "path:\"11408/notes/数学/高数\"",
       "color": {
         "a": 1,
         "rgb": 14964297
       }
     },
     {
-      "query": "path:\"11408/笔记/数学/线代\"",
+      "query": "path:\"11408/notes/数学/线代\"",
       "color": {
         "a": 1,
         "rgb": 2541274
