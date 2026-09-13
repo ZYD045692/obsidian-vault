@@ -36,15 +36,11 @@ _vlm/*
 # ── 笔记生成运行时产物（raw 留档 / 失败清单 / 日志）───────────
 _notes_runtime/
 
-# ── Obsidian：只跟踪配置与数据，插件本体/清单/备份/窗口状态一律不跟 ──
-# 插件本体（main.js、styles.css）可重装
-.obsidian/plugins/*/main.js
-.obsidian/plugins/*/styles.css
-# 插件自带清单：跟着跟踪会出现「有清单没代码」的错位，
-# 且每次插件升级都会让工作区变脏
-.obsidian/plugins/*/manifest.json
-.obsidian/plugins/*/versions.json
-# 插件自动备份
+# ── Obsidian：跟踪插件本体与配置，只忽略备份与窗口状态 ──────────
+# 插件本体与清单必须跟踪。Obsidian 缺 main.js 会直接加载失败；
+# 而只跟 manifest.json 会留下「有清单没代码」的错位，克隆下来是一堆报错。
+# 这些 blob 本就留在 git 历史里，纳入跟踪不会撑大仓库。
+# 插件自动备份（realclaudian 一份约 5 MB，且每次升级都会新生成）→ 忽略
 .obsidian/plugins/*/backup-*/
 # 打开的文件与面板布局，属机器状态
 .obsidian/workspace.json
