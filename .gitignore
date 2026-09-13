@@ -36,10 +36,14 @@ _vlm/*
 # ── 笔记生成运行时产物（raw 留档 / 失败清单 / 日志）───────────
 _notes_runtime/
 
-# ── Obsidian：保留配置与数据，去掉插件本体 / 自动备份 / 窗口状态 ──
-# 插件代码与样式可重装（data.json 等配置与 SR 复习数据保留）
+# ── Obsidian：只跟踪配置与数据，插件本体/清单/备份/窗口状态一律不跟 ──
+# 插件本体（main.js、styles.css）可重装
 .obsidian/plugins/*/main.js
 .obsidian/plugins/*/styles.css
+# 插件自带清单：跟着跟踪会出现「有清单没代码」的错位，
+# 且每次插件升级都会让工作区变脏
+.obsidian/plugins/*/manifest.json
+.obsidian/plugins/*/versions.json
 # 插件自动备份
 .obsidian/plugins/*/backup-*/
 # 打开的文件与面板布局，属机器状态
