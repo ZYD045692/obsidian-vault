@@ -1,7 +1,7 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "claude-code/deepseek-v4-flash-0731",
+  "model": "haiku",
   "thinkingBudget": "off",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -100,10 +100,10 @@
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
     "providerId": "claude",
-    "model": "claude-code/deepseek-v4-flash-0731[1M]"
+    "model": "sonnet"
   },
   "savedProviderModel": {
-    "claude": "claude-code/deepseek-v4-flash-0731"
+    "claude": "haiku"
   },
   "savedProviderEffort": {
     "claude": "high"
